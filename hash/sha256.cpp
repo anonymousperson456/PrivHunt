@@ -58,13 +58,43 @@ inline uint32_t _rotr(uint32_t x, uint8_t r)
     h = t1 + t2;
 
 #ifdef BSWAP
-#define WRITEBE32(ptr,x) *((uint32_t *)(ptr)) = _byteswap_ulong(x)
-#define WRITEBE64(ptr,x) *((uint64_t *)(ptr)) = _byteswap_uint64(x)
-#define READBE32(ptr) (uint32_t)_byteswap_ulong(*(uint32_t *)(ptr))
-#else
-#define WRITEBE32(ptr,x) *(ptr) = x
-#define WRITEBE64(ptr,x) *(ptr) = x
-#define READBE32(ptr) *(uint32_t *)(ptr)
+#define WRITEBE32(ptr, x) do { \
+    uint32_t val = (x); \
+    ((uint8_t*)(ptr))[0] = (val >> 24) & 0xFF; \
+    ((uint8_t*)(ptr))[1] = (val >> 16) & 0xFF; \
+    ((uint8_t*)(ptr))[2] = (val >>  8) & 0xFF; \
+    ((uint8_t*)(ptr))[3] = (val      ) & 0xFF; \
+} while(0)
+
+#define WRITEBE64(ptr, x) do { \
+    uint64_t val = (x); \
+    ((uint8_t*)(ptr))[0] = (val >> 56) & 0xFF; \
+    ((uint8_t*)(ptr))[1] = (val >> 48) & 0xFF; \
+    ((uint8_t*)(ptr))[2] = (val >> 40) & 0xFF; \
+    ((uint8_t*)(ptr))[3] = (val >> 32) & 0xFF; \
+    ((uint8_t*)(ptr))[4] = (val >> 24) & 0xFF; \
+    ((uint8_t*)(ptr))[5] = (val >> 16) & 0xFF; \
+    ((uint8_t*)(ptr))[6] = (val >>  8) & 0xFF; \
+    ((uint8_t*)(ptr))[7] = (val      ) & 0xFF; \
+} while(0)
+
+#define READBE32(ptr) ( \
+    ((uint32_t)((uint8_t*)(ptr))[0] << 24) | \
+    ((uint32_t)((uint8_t*)(ptr))[1] << 16) | \
+    ((uint32_t)((uint8_t*)(ptr))[2] <<  8) | \
+    ((uint32_t)((uint8_t*)(ptr))[3]      )   \
+)
+
+#define READBE64(ptr) ( \
+    ((uint64_t)((uint8_t*)(ptr))[0] << 56) | \
+    ((uint64_t)((uint8_t*)(ptr))[1] << 48) | \
+    ((uint64_t)((uint8_t*)(ptr))[2] << 40) | \
+    ((uint64_t)((uint8_t*)(ptr))[3] << 32) | \
+    ((uint64_t)((uint8_t*)(ptr))[4] << 24) | \
+    ((uint64_t)((uint8_t*)(ptr))[5] << 16) | \
+    ((uint64_t)((uint8_t*)(ptr))[6] <<  8) | \
+    ((uint64_t)((uint8_t*)(ptr))[7]      )   \
+)
 #endif
 
 // Initialise state
