@@ -164,7 +164,7 @@ if (rKey > 0) {
 printf("Base Key : Randomly changes on every %" PRIu64 " Mkeys\n", rKey);
 }
 printf("Global start : %s (%d bit)\n", this->rangeStart.GetBase16().c_str(), this->rangeStart.GetBitLength());
-printf("Global end : %s (%d bit)\n", this->rangeEnd.GetBase16().c_str(), this->rangeEnd.GetBitLength());
+printf("Global end   : %s (%d bit)\n", this->rangeEnd.GetBase16().c_str(), this->rangeEnd.GetBitLength());
 printf("Global range : %s (%d bit)\n", this->rangeDiff2.GetBase16().c_str(), this->rangeDiff2.GetBitLength());
 }
 // ----------------------------------------------------------------------------
