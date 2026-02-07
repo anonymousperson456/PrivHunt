@@ -1011,15 +1011,13 @@ avgKeyRate /= (double)(nbSample);
 avgGpuKeyRate /= (double)(nbSample);
 if (isAlive(params)) {
 memset(timeStr, '\0', 256);
-printf("\r[%s] [CPU+GPU: %.2f Mk/s] [GPU: %.2f Mk/s] [C: %lf %%] [R: %" PRIu64 "] [T: %s (%d bit)] [F: %d]",
+printf("\r[%s] [GPU: %.2f Mk/s] [P: %lf %%] [F: %d] [%d bit] [R: %"PRIu64"]",
 toTimeStr(t1, timeStr),
-avgKeyRate / 1000000.0,
 avgGpuKeyRate / 1000000.0,
 completedPerc,
-rKeyCount,
-formatThousands(count).c_str(),
+nbFoundKey,
 completedBits,
-nbFoundKey);
+rKeyCount);
 }
 if (rKey > 0) {
 if ((count - lastrKey) > (1000000 * rKey)) {
