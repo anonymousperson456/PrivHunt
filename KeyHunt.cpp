@@ -1016,8 +1016,7 @@ toTimeStr(t1, timeStr),
 avgGpuKeyRate / 1000000.0,
 completedPerc,
 completedBits,
-nbFoundKey,
-rKeyCount);
+nbFoundKey);
 }
 if (rKey > 0) {
 if ((count - lastrKey) > (1000000 * rKey)) {
