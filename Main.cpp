@@ -505,6 +505,7 @@ int main(int argc, char** argv)
 			if (i + 1 < gpuId.size())
 				printf(", ");
 		}
+		printf("\n");
 	    if (coinType == COIN_BTC) {
 		    switch (searchMode) {
 		    case (int)SEARCH_MODE_MA:
