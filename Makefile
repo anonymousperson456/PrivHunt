@@ -73,7 +73,7 @@ $(OBJDIR)/%.o : %.cpp
 all: KeyHunt
 
 KeyHunt: $(OBJET)
-	@echo Making privhunt...
+	@echo Making PrivHunt...
 	$(CXX) $(OBJET) $(LFLAGS) -o privhunt
 
 $(OBJET): | $(OBJDIR) $(OBJDIR)/GPU $(OBJDIR)/hash
@@ -92,3 +92,4 @@ clean:
 	@rm -f obj/*.o
 	@rm -f obj/GPU/*.o
 	@rm -f obj/hash/*.o
+
