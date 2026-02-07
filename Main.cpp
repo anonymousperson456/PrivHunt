@@ -498,7 +498,6 @@ int main(int argc, char** argv)
 	printf("COIN TYPE    : %s\n", coinType == COIN_BTC ? "BITCOIN" : "ETHEREUM");
 	printf("SEARCH MODE  : %s\n", searchMode == (int)SEARCH_MODE_MA ? "Multi Address" : (searchMode == (int)SEARCH_MODE_SA ? "Single Address" : (searchMode == (int)SEARCH_MODE_MX ? "Multi X Points" : "Single X Point")));
 	printf("DEVICE       : %s\n", (gpuEnable && nbCPUThread > 0) ? "CPU & GPU" : ((!gpuEnable && nbCPUThread > 0) ? "CPU" : "GPU"));
-	printf("CPU THREAD   : %d\n", nbCPUThread);
 	if (gpuEnable) {
 		printf("GPU IDS      : ");
 		for (int i = 0; i < gpuId.size(); i++) {
@@ -526,8 +525,6 @@ int main(int argc, char** argv)
 			printf("\n");
 	}
 	printf("SSE          : %s\n", useSSE ? "YES" : "NO");
-	printf("RKEY         : %" PRIu64 " Mkeys\n", rKey);
-	printf("MAX FOUND    : %d\n", maxFound);
 	if (coinType == COIN_BTC) {
 		switch (searchMode) {
 		case (int)SEARCH_MODE_MA:
