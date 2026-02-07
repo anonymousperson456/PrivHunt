@@ -505,42 +505,23 @@ int main(int argc, char** argv)
 			if (i + 1 < gpuId.size())
 				printf(", ");
 		}
-		printf("\n");
-		printf("GPU GRIDSIZE : ");
-		for (int i = 0; i < gridSize.size(); i++) {
-			printf("%d", gridSize.at(i));
-			if (i + 1 < gridSize.size()) {
-				if ((i + 1) % 2 != 0) {
-					printf("x");
-				}
-				else {
-					printf(", ");
-				}
-
-			}
-		}
-		if (gpuAutoGrid)
-			printf(" (Auto grid size)\n");
-		else
-			printf("\n");
-	}
-	printf("SSE          : %s\n", useSSE ? "YES" : "NO");
-	if (coinType == COIN_BTC) {
-		switch (searchMode) {
-		case (int)SEARCH_MODE_MA:
-			printf("BTC HASH160s : %s\n", inputFile.c_str());
-			break;
-		case (int)SEARCH_MODE_SA:
-			printf("BTC ADDRESS  : %s\n", address.c_str());
-			break;
-		case (int)SEARCH_MODE_MX:
-			printf("BTC XPOINTS  : %s\n", inputFile.c_str());
-			break;
-		case (int)SEARCH_MODE_SX:
-			printf("BTC XPOINT   : %s\n", xpoint.c_str());
-			break;
-		default:
-			break;
+	    printf("SSE          : %s\n", useSSE ? "YES" : "NO");
+	    if (coinType == COIN_BTC) {
+		    switch (searchMode) {
+		    case (int)SEARCH_MODE_MA:
+			    printf("BTC HASH160s : %s\n", inputFile.c_str());
+			    break;
+		    case (int)SEARCH_MODE_SA:
+			    printf("BTC ADDRESS  : %s\n", address.c_str());
+			    break;
+		    case (int)SEARCH_MODE_MX:
+			    printf("BTC XPOINTS  : %s\n", inputFile.c_str());
+			    break;
+		    case (int)SEARCH_MODE_SX:
+			    printf("BTC XPOINT   : %s\n", xpoint.c_str());
+			    break;
+		    default:
+			    break;
 		}
 	}
 	else {
