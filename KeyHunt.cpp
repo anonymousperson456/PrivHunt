@@ -37,7 +37,6 @@ this->rangeStart.SetBase16(rangeStart.c_str());
 this->rangeEnd.SetBase16(rangeEnd.c_str());
 this->rangeDiff2.Set(&this->rangeEnd);
 this->rangeDiff2.Sub(&this->rangeStart);
-this->rangeDiff2.Add((uint64_t)1);
 this->lastrKey = 0;
 secp = new Secp256K1();
 secp->Init();
@@ -125,7 +124,6 @@ this->rangeStart.SetBase16(rangeStart.c_str());
 this->rangeEnd.SetBase16(rangeEnd.c_str());
 this->rangeDiff2.Set(&this->rangeEnd);
 this->rangeDiff2.Sub(&this->rangeStart);
-//this->rangeDiff2.Add((uint64_t)1);
 this->targetCounter = 1;
 secp = new Secp256K1();
 secp->Init();
@@ -168,6 +166,7 @@ printf("Base Key : Randomly changes on every %" PRIu64 " Mkeys\n", rKey);
 printf("Global start : %s (%d bit)\n", this->rangeStart.GetBase16().c_str(), this->rangeStart.GetBitLength());
 printf("Global end   : %s (%d bit)\n", this->rangeEnd.GetBase16().c_str(), this->rangeEnd.GetBitLength());
 printf("Global range : %s (%d bit)\n", this->rangeDiff2.GetBase16().c_str(), this->rangeDiff2.GetBitLength());
+this->rangeDiff2.Add((uint64_t)1);
 }
 // ----------------------------------------------------------------------------
 KeyHunt::~KeyHunt()
@@ -1031,7 +1030,7 @@ rKeyCount++;
 lastCount = count;
 lastGPUCount = gpuCount;
 t0 = t1;
-if (should_exit || nbFoundKey >= targetCounter || completedPerc > 100.5)
+if (should_exit || nbFoundKey >= targetCounter || completedPerc > 100.0)
 endOfSearch = true;
 }
 printf("\n");
