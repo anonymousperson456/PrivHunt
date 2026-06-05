@@ -209,6 +209,26 @@ void KeyHunt::output(std::string addr, std::string pAddr, std::string pAddrHex, 
   }
   std::transform(prv.begin(), prv.end(), prv.begin(), [](unsigned char c){ return std::tolower(c); });
   fprintf(f, "Private Key: %s\n", prv.c_str());
+  
+Int keyInt;
+keyInt.SetBase16(prv.c_str());
+Int offset;
+offset.Set(&keyInt);
+offset.Sub(&this->rangeStart);
+Int rangeDiffLocal;
+rangeDiffLocal.Set(&this->rangeEnd);
+rangeDiffLocal.Sub(&this->rangeStart);
+Int mult;
+mult.SetInt32(100000000);
+offset.Mult(&mult);
+offset.Div(&rangeDiffLocal);
+std::string percStr = offset.GetBase10();
+if (percStr.length() > 6)
+    percStr.insert(percStr.length() - 6, ".");
+else
+    percStr = "0." + std::string(6 - percStr.length(), '0') + percStr;
+fprintf(f, "Position in Percent: %s %%\n", percStr.c_str());
+  
   if (needToClose)
     fclose(f);
 #ifdef WIN64
@@ -993,7 +1013,7 @@ uint64_t count = getCPUCount() + gpuCount;
 ICount.SetInt64(count);
 int completedBits = ICount.GetBitLength();
 if (rKey <= 0) {
-completedPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
+double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
 //ICount.Mult(&p100);
 //ICount.Div(&this->rangeDiff2);
 //completedPerc = std::stoi(ICount.GetBase10());
@@ -1016,11 +1036,9 @@ avgKeyRate /= (double)(nbSample);
 avgGpuKeyRate /= (double)(nbSample);
 if (isAlive(params)) {
 memset(timeStr, '\0', 256);
-if (completedPerc > 100.0) completedPerc = 100.0;
-printf("\r[%s] [GPU: %.2f MK/s] [Probability: %lf %%] [Total: 2^%d] [Found: %d]",
+printf("\r[%s] [GPU: %.2f MK/s] [Total: 2^%d] [Found: %d]",
 toTimeStr(t1, timeStr),
 avgGpuKeyRate / 1000000.0,
-completedPerc,
 completedBits,
 nbFoundKey);
 }
@@ -1035,7 +1053,7 @@ rKeyCount++;
 lastCount = count;
 lastGPUCount = gpuCount;
 t0 = t1;
-if (should_exit || nbFoundKey >= targetCounter || completedPerc >= 100.0)
+if (should_exit || nbFoundKey >= targetCounter || stopPerc >= 100.0)
 endOfSearch = true;
 }
 printf("\n");
