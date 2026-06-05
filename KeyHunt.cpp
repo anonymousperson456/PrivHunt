@@ -1012,6 +1012,7 @@ avgKeyRate /= (double)(nbSample);
 avgGpuKeyRate /= (double)(nbSample);
 if (isAlive(params)) {
 memset(timeStr, '\0', 256);
+if (completedPerc > 100.0) completedPerc = 100.0;
 printf("\r[%s] [GPU: %.2f MK/s] [Probability: %lf %%] [Total: 2^%d] [Found: %d]",
 toTimeStr(t1, timeStr),
 avgGpuKeyRate / 1000000.0,
@@ -1030,7 +1031,7 @@ rKeyCount++;
 lastCount = count;
 lastGPUCount = gpuCount;
 t0 = t1;
-if (should_exit || nbFoundKey >= targetCounter || completedPerc > 100.0)
+if (should_exit || nbFoundKey >= targetCounter || completedPerc >= 100.0)
 endOfSearch = true;
 }
 printf("\n");
