@@ -212,30 +212,25 @@ void KeyHunt::output(std::string addr, std::string pAddr, std::string pAddrHex, 
   
 Int keyInt;
 keyInt.SetBase16(prv.c_str());
-
-if (keyInt.IsLower(&this->rangeStart) || keyInt.IsGreater(&this->rangeEnd)) {
-    fprintf(f, "Position in Percent: N/A (key outside search range)\n");
+Int offset;
+offset.Set(&keyInt);
+offset.Sub(&this->rangeStart);
+Int rangeDiffLocal;
+rangeDiffLocal.Set(&this->rangeEnd);
+rangeDiffLocal.Sub(&this->rangeStart);
+if (rangeDiffLocal.IsZero()) {
+    fprintf(f, "Position in Percent: 0.000000 %%\n");
 } else {
-    Int offset;
-    offset.Set(&keyInt);
-    offset.Sub(&this->rangeStart);
-    Int rangeDiffLocal;
-    rangeDiffLocal.Set(&this->rangeEnd);
-    rangeDiffLocal.Sub(&this->rangeStart);
-    if (rangeDiffLocal.IsZero()) {
-        fprintf(f, "Position in Percent: N/A (range start equals range end)\n");
-    } else {
-        Int mult;
-        mult.SetInt32(100000000);
-        offset.Mult(&mult);
-        offset.Div(&rangeDiffLocal);
-        std::string percStr = offset.GetBase10();
-        if (percStr.length() > 6)
-            percStr.insert(percStr.length() - 6, ".");
-        else
-            percStr = "0." + std::string(6 - percStr.length(), '0') + percStr;
-        fprintf(f, "Position in Percent: %s %%\n", percStr.c_str());
-    }
+    Int mult;
+    mult.SetInt32(100000000);
+    offset.Mult(&mult);
+    offset.Div(&rangeDiffLocal);
+    std::string percStr = offset.GetBase10();
+    if (percStr.length() > 6)
+        percStr.insert(percStr.length() - 6, ".");
+    else
+        percStr = "0." + std::string(6 - percStr.length(), '0') + percStr;
+    fprintf(f, "Position in Percent: %s %%\n", percStr.c_str());
 }
   if (needToClose)
     fclose(f);
@@ -939,6 +934,8 @@ if (outputFile.length() > 0) {
 // setup ranges
 SetupRanges(nbCPUThread + nbGPUThread);
 memset(counters, 0, sizeof(counters));
+Int origRangeStart;
+origRangeStart.Set(&rangeStart);
 if (!useGpu)
 printf("\n");
 TH_PARAM* params = (TH_PARAM*)malloc((nbCPUThread + nbGPUThread) * sizeof(TH_PARAM));
@@ -980,6 +977,8 @@ pthread_t thread_id;
 pthread_create(&thread_id, NULL, &_FindKeyGPU, (void*)(params + (nbCPUThread + i)));
 #endif
 }
+rangeStart.Set(&origRangeStart);
+
 #ifndef WIN64
 setvbuf(stdout, NULL, _IONBF, 0);
 #endif
