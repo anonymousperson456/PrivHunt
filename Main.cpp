@@ -189,7 +189,7 @@ BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
 #else
 void CtrlHandler(int signum) {
 	printf("\n\nBYE\n");
-	exit(signum);
+	should_exit = true;
 }
 #endif
 
