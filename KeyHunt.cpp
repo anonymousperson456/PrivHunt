@@ -1000,7 +1000,6 @@ startTime = t0;
 Int p100;
 Int ICount;
 p100.SetInt32(100);
-double completedPerc = 0;
 uint64_t rKeyCount = 0;
 while (isAlive(params)) {
 int delay = 2000;
@@ -1013,7 +1012,6 @@ uint64_t count = getCPUCount() + gpuCount;
 ICount.SetInt64(count);
 int completedBits = ICount.GetBitLength();
 if (rKey <= 0) {
-double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
 //ICount.Mult(&p100);
 //ICount.Div(&this->rangeDiff2);
 //completedPerc = std::stoi(ICount.GetBase10());
@@ -1053,6 +1051,7 @@ rKeyCount++;
 lastCount = count;
 lastGPUCount = gpuCount;
 t0 = t1;
+double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
 if (should_exit || nbFoundKey >= targetCounter || stopPerc >= 100.0)
 endOfSearch = true;
 }
