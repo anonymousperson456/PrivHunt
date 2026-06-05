@@ -904,6 +904,10 @@ endOfSearch = false;
 nbCPUThread = nbThread;
 nbGPUThread = (useGpu ? (int)gpuId.size() : 0);
 nbFoundKey = 0;
+if (outputFile.length() > 0) {
+    FILE* f = fopen(outputFile.c_str(), "w");
+    if (f) fclose(f);
+}
 // setup ranges
 SetupRanges(nbCPUThread + nbGPUThread);
 memset(counters, 0, sizeof(counters));
