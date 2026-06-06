@@ -1229,7 +1229,7 @@ std::string Int::GetBase10() {
 // ------------------------------------------------
 
 std::string Int::GetBase16() {
-	return GetBaseN(16, "0123456789ABCDEF");
+	return GetBaseN(16, "0123456789abcdef");
 }
 
 // ------------------------------------------------
