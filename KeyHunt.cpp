@@ -979,7 +979,6 @@ rangeStart.Set(&origRangeStart);
 #ifndef WIN64
 setvbuf(stdout, NULL, _IONBF, 0);
 #endif
-printf("\n");
 uint64_t lastCount = 0;
 uint64_t gpuCount = 0;
 uint64_t lastGPUCount = 0;
@@ -997,6 +996,7 @@ memset(lastGpukeyRate, 0, sizeof(lastkeyRate));
 while (!hasStarted(params)) {
 Timer::SleepMillis(500);
 }
+printf("\n");
 // Reset timer
 Timer::Init();
 t0 = Timer::get_tick();
