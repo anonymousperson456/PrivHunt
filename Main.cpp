@@ -14,7 +14,7 @@
 #include <inttypes.h>
 #endif
 
-#define RELEASE "1.07"
+#define RELEASE ""
 
 using namespace std;
 bool should_exit = false;
