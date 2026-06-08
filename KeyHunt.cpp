@@ -139,8 +139,8 @@ for (size_t i = 0; i < hashORxpoint.size(); i++) {
 ((uint8_t*)xpoint)[i] = hashORxpoint.at(i);
 }
 }
-printf("\n");
-InitGenratorTable();
+//printf("\n");
+//InitGenratorTable();
 }
 // ----------------------------------------------------------------------------
 void KeyHunt::InitGenratorTable()
@@ -865,8 +865,6 @@ ph->hasStarted = true;
 printf("GPU code not compiled, use -DWITHGPU when compiling.\n");
 #endif
 ph->isRunning = false;
-printf("\n");
-Search(int nbThread, std::vector<int> gpuId, std::vector<int> gridSize, bool& should_exit);
 }
 // ----------------------------------------------------------------------------
 bool KeyHunt::isAlive(TH_PARAM * p)
