@@ -140,7 +140,7 @@ for (size_t i = 0; i < hashORxpoint.size(); i++) {
 }
 }
 //printf("\n");
-//InitGenratorTable();
+InitGenratorTable();
 }
 // ----------------------------------------------------------------------------
 void KeyHunt::InitGenratorTable()
