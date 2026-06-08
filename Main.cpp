@@ -239,15 +239,15 @@ int main(int argc, char** argv)
 	parser.add("-u", "--uncomp", false);
 	parser.add("-b", "--both", false);
 	parser.add("-g", "--gpu", false);
-	parser.add("", "--gpui", true);
+	parser.add("-gid", "--gpui", true);
 	parser.add("", "--gpux", true);
 	parser.add("-t", "--thread", true);
 	parser.add("-i", "--in", true);
 	parser.add("-o", "--out", true);
 	parser.add("-m", "--mode", true);
-	parser.add("", "--coin", true);
-	parser.add("", "--range", true);
-	parser.add("-r", "--rkey", true);
+	parser.add("-c", "--coin", true);
+	parser.add("-r", "--range", true);
+	parser.add("", "--rkey", true);
 	parser.add("-v", "--version", false);
 
 	if (argc == 1) {
@@ -306,7 +306,7 @@ int main(int argc, char** argv)
 				gpuEnable = true;
 				nbCPUThread = 0;
 			}
-			else if (optArg.equals("", "--gpui")) {
+			else if (optArg.equals("-gid", "--gpui")) {
 				string ids = optArg.arg;
 				getInts("--gpui", gpuId, ids, ',');
 			}
@@ -328,14 +328,14 @@ int main(int argc, char** argv)
 			else if (optArg.equals("-m", "--mode")) {
 				searchMode = parseSearchMode(optArg.arg);
 			}
-			else if (optArg.equals("", "--coin")) {
+			else if (optArg.equals("-c", "--coin")) {
 				coinType = parseCoinType(optArg.arg);
 			}
-			else if (optArg.equals("", "--range")) {
+			else if (optArg.equals("-r", "--range")) {
 				std::string range = optArg.arg;
 				parseRange(range, rangeStart, rangeEnd);
 			}
-			else if (optArg.equals("-r", "--rkey")) {
+			else if (optArg.equals("", "--rkey")) {
 				rKey = std::stoull(optArg.arg);
 			}
 			else if (optArg.equals("-v", "--version")) {
