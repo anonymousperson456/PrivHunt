@@ -164,6 +164,7 @@ printf("Global start : %s (%d bit)\n", this->rangeStart.GetBase16().c_str(), thi
 printf("Global end   : %s (%d bit)\n", this->rangeEnd.GetBase16().c_str(), this->rangeEnd.GetBitLength());
 printf("Global range : %s (%d bit)\n", this->rangeDiff2.GetBase16().c_str(), this->rangeDiff2.GetBitLength());
 this->rangeDiff2.Add((uint64_t)1);
+printf("\n");
 }
 // ----------------------------------------------------------------------------
 KeyHunt::~KeyHunt()
