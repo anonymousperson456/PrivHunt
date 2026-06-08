@@ -866,7 +866,7 @@ printf("GPU code not compiled, use -DWITHGPU when compiling.\n");
 #endif
 ph->isRunning = false;
 printf("\n");
-Search();
+Search(int nbThread, std::vector<int> gpuId, std::vector<int> gridSize, bool& should_exit);
 }
 // ----------------------------------------------------------------------------
 bool KeyHunt::isAlive(TH_PARAM * p)
