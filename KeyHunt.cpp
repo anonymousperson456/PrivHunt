@@ -104,7 +104,7 @@ printf("Loaded : %s Ethereum addresses\n", formatThousands(i).c_str());
 printf("\n");
 bloom->print();
 //printf("\n");
-//InitGenratorTable();
+InitGenratorTable();
 }
 // ----------------------------------------------------------------------------
 KeyHunt::KeyHunt(const std::vector<unsigned char>& hashORxpoint, int compMode, int searchMode, int coinType,
