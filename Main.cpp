@@ -245,7 +245,7 @@ int main(int argc, char** argv)
 	parser.add("-i", "--in", true);
 	parser.add("-o", "--out", true);
 	parser.add("-m", "--mode", true);
-	parser.add("-c", "--coin", true);
+	parser.add("", "--coin", true);
 	parser.add("-r", "--range", true);
 	parser.add("", "--rkey", true);
 	parser.add("-v", "--version", false);
@@ -328,7 +328,7 @@ int main(int argc, char** argv)
 			else if (optArg.equals("-m", "--mode")) {
 				searchMode = parseSearchMode(optArg.arg);
 			}
-			else if (optArg.equals("-c", "--coin")) {
+			else if (optArg.equals("", "--coin")) {
 				coinType = parseCoinType(optArg.arg);
 			}
 			else if (optArg.equals("-r", "--range")) {
