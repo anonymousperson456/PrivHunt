@@ -1037,11 +1037,24 @@ avgGpuKeyRate += lastGpukeyRate[nbSample];
 avgKeyRate /= (double)(nbSample);
 avgGpuKeyRate /= (double)(nbSample);
 if (isAlive(params)) {
-memset(timeStr, '\0', 256);
-printf("\r[%s] [GPU: %.2f MK/s] [Found: %d]",
-toTimeStr(t1, timeStr),
-avgGpuKeyRate / 1000000.0,
-nbFoundKey);
+  memset(timeStr, '\0', 256);
+  double displayRate;
+  const char* unit;
+  if (avgGpuKeyRate >= 1e12) {
+    displayRate = avgGpuKeyRate / 1e12;
+    unit = "TK/s";
+  } else if (avgGpuKeyRate >= 1e9) {
+    displayRate = avgGpuKeyRate / 1e9;
+    unit = "BK/s";
+  } else {
+    displayRate = avgGpuKeyRate / 1e6;
+    unit = "MK/s";
+  }
+  printf("\r[%s] [GPU: %.2f %s] [Found: %d]",
+    toTimeStr(t1, timeStr),
+    displayRate,
+    unit,
+    nbFoundKey);
 }
 if (rKey > 0) {
 if ((count - lastrKey) > (1000000 * rKey)) {
