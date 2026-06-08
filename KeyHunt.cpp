@@ -103,7 +103,7 @@ printf("Loaded : %s Ethereum addresses\n", formatThousands(i).c_str());
 }
 printf("\n");
 bloom->print();
-//printf("\n");
+printf("\n");
 InitGenratorTable();
 }
 // ----------------------------------------------------------------------------
