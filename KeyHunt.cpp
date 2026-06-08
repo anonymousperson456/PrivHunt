@@ -104,7 +104,7 @@ printf("Loaded : %s Ethereum addresses\n", formatThousands(i).c_str());
 printf("\n");
 bloom->print();
 printf("\n");
-//InitGenratorTable();
+InitGenratorTable();
 }
 // ----------------------------------------------------------------------------
 KeyHunt::KeyHunt(const std::vector<unsigned char>& hashORxpoint, int compMode, int searchMode, int coinType,
@@ -1037,7 +1037,7 @@ avgKeyRate /= (double)(nbSample);
 avgGpuKeyRate /= (double)(nbSample);
 if (isAlive(params)) {
 memset(timeStr, '\0', 256);
-printf("\r[%s] [GPU: %.2f MK/s] [Found: %d]",
+printf("\r\n[%s] [GPU: %.2f MK/s] [Found: %d]",
 toTimeStr(t1, timeStr),
 avgGpuKeyRate / 1000000.0,
 nbFoundKey);
