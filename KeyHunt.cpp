@@ -773,6 +773,7 @@ Point* p = new Point[nbThread];
 Int* keys = new Int[nbThread];
 std::vector<ITEM> found;
 printf("GPU : %s\n", g->deviceName.c_str());
+printf("\n");
 counters[thId] = 0;
 getGPUStartingKeys(tRangeStart, tRangeEnd, g->GetGroupSize(), nbThread, keys, p);
 ok = g->SetKeys(p);
@@ -1037,7 +1038,6 @@ avgKeyRate /= (double)(nbSample);
 avgGpuKeyRate /= (double)(nbSample);
 if (isAlive(params)) {
 memset(timeStr, '\0', 256);
-printf("\n");
 printf("\r[%s] [GPU: %.2f MK/s] [Found: %d]",
 toTimeStr(t1, timeStr),
 avgGpuKeyRate / 1000000.0,
