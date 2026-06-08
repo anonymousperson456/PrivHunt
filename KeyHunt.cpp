@@ -139,7 +139,7 @@ for (size_t i = 0; i < hashORxpoint.size(); i++) {
 ((uint8_t*)xpoint)[i] = hashORxpoint.at(i);
 }
 }
-//printf("\n");
+printf("\n");
 InitGenratorTable();
 }
 // ----------------------------------------------------------------------------
