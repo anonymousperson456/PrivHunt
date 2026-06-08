@@ -773,7 +773,6 @@ Point* p = new Point[nbThread];
 Int* keys = new Int[nbThread];
 std::vector<ITEM> found;
 printf("GPU : %s\n", g->deviceName.c_str());
-printf("\n");
 counters[thId] = 0;
 getGPUStartingKeys(tRangeStart, tRangeEnd, g->GetGroupSize(), nbThread, keys, p);
 ok = g->SetKeys(p);
