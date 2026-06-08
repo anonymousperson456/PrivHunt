@@ -3,6 +3,9 @@
 #
 # Author : Jean-Luc PONS
 
+gpu = 1
+.DEFAULT_GOAL := all
+
 SRC = Base58.cpp IntGroup.cpp Main.cpp Bloom.cpp Random.cpp \
       Timer.cpp Int.cpp IntMod.cpp Point.cpp SECP256K1.cpp \
       KeyHunt.cpp GPU/GPUGenerate.cpp hash/ripemd160.cpp \
