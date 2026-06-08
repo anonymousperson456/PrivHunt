@@ -156,10 +156,7 @@ Gn[i] = g;
 }
 // _2Gn = CPU_GRP_SIZE*G
 _2Gn = secp->DoubleDirect(Gn[CPU_GRP_SIZE / 2 - 1]);
-char* ctimeBuff;
 time_t now = time(NULL);
-ctimeBuff = ctime(&now);
-printf("Start Time : %s", ctimeBuff);
 if (rKey > 0) {
 printf("Base Key : Randomly changes on every %" PRIu64 " Mkeys\n", rKey);
 }
