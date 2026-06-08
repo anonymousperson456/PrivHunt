@@ -558,7 +558,6 @@ int main(int argc, char** argv)
 			return 0;
 			break;
 		}
-		printf("\n");
 		v->Search(nbCPUThread, gpuId, gridSize, should_exit);
 		delete v;
 		printf("\n\nBYE\n");
@@ -587,7 +586,6 @@ int main(int argc, char** argv)
 		return 0;
 		break;
 	}
-	printf("\n");
 	v->Search(nbCPUThread, gpuId, gridSize, should_exit);
 	delete v;
 	return 0;
