@@ -1017,7 +1017,6 @@ delay -= 500;
 gpuCount = getGPUCount();
 uint64_t count = getCPUCount() + gpuCount;
 ICount.SetInt64(count);
-int completedBits = ICount.GetBitLength();
 if (rKey <= 0) {
 //ICount.Mult(&p100);
 //ICount.Div(&this->rangeDiff2);
@@ -1041,10 +1040,9 @@ avgKeyRate /= (double)(nbSample);
 avgGpuKeyRate /= (double)(nbSample);
 if (isAlive(params)) {
 memset(timeStr, '\0', 256);
-printf("\r[%s] [GPU: %.2f MK/s] [Total: 2^%d] [Found: %d]",
+printf("\r[%s] [GPU: %.2f MK/s] [Found: %d]",
 toTimeStr(t1, timeStr),
 avgGpuKeyRate / 1000000.0,
-completedBits,
 nbFoundKey);
 }
 if (rKey > 0) {
