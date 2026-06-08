@@ -1037,7 +1037,8 @@ avgKeyRate /= (double)(nbSample);
 avgGpuKeyRate /= (double)(nbSample);
 if (isAlive(params)) {
 memset(timeStr, '\0', 256);
-printf("\r\n[%s] [GPU: %.2f MK/s] [Found: %d]",
+printf("\n")
+printf("\r[%s] [GPU: %.2f MK/s] [Found: %d]",
 toTimeStr(t1, timeStr),
 avgGpuKeyRate / 1000000.0,
 nbFoundKey);
