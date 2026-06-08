@@ -103,8 +103,8 @@ printf("Loaded : %s Ethereum addresses\n", formatThousands(i).c_str());
 }
 printf("\n");
 bloom->print();
-printf("\n");
-InitGenratorTable();
+//printf("\n");
+//InitGenratorTable();
 }
 // ----------------------------------------------------------------------------
 KeyHunt::KeyHunt(const std::vector<unsigned char>& hashORxpoint, int compMode, int searchMode, int coinType,
@@ -139,8 +139,8 @@ for (size_t i = 0; i < hashORxpoint.size(); i++) {
 ((uint8_t*)xpoint)[i] = hashORxpoint.at(i);
 }
 }
-printf("\n");
-InitGenratorTable();
+//printf("\n");
+//InitGenratorTable();
 }
 // ----------------------------------------------------------------------------
 void KeyHunt::InitGenratorTable()
