@@ -865,6 +865,8 @@ ph->hasStarted = true;
 printf("GPU code not compiled, use -DWITHGPU when compiling.\n");
 #endif
 ph->isRunning = false;
+printf("\n");
+Search();
 }
 // ----------------------------------------------------------------------------
 bool KeyHunt::isAlive(TH_PARAM * p)
