@@ -1050,11 +1050,13 @@ if (isAlive(params)) {
     displayRate = avgGpuKeyRate / 1e6;
     unit = "MK/s";
   }
-  printf("\r[%s] [GPU: %.2f %s] [Found: %d]\033[K",
+  printf("\r%-80s\r[%s] [GPU: %.2f %s] [Found: %d]",
+    "",
     toTimeStr(t1, timeStr),
     displayRate,
     unit,
     nbFoundKey);
+  fflush(stdout);
 }
 if (rKey > 0) {
 if ((count - lastrKey) > (1000000 * rKey)) {
