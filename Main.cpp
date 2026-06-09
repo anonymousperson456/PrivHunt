@@ -26,11 +26,11 @@ void usage()
 	printf("Where TARGETS is one address/xpont, or multiple hashes/xpoints file\n\n");
 
 	printf("-h, --help                               : Display this message\n");
-	printf("-c, --check                              : Check the working of the codes\n");
+	printf("--check                              : Check the working of the codes\n");
 	printf("-u, --uncomp                             : Search uncompressed points\n");
 	printf("-b, --both                               : Search both uncompressed or compressed points\n");
 	printf("-g, --gpu                                : Enable GPU calculation\n");
-	printf("--gpui GPU ids: 0,1,...                  : List of GPU(s) to use, default is 0\n");
+	printf("-gid, --gpui GPU ids: 0,1,...                  : List of GPU(s) to use, default is 0\n");
 	printf("--gpux GPU gridsize: g0x,g0y,g1x,g1y,... : Specify GPU(s) kernel gridsize, default is 8*(Device MP count),128\n");
 	printf("-t, --thread N                           : Specify number of CPU thread, default is number of core\n");
 	printf("-i, --in FILE                            : Read rmd160 hashes or xpoints from FILE, should be in binary format with sorted\n");
@@ -40,20 +40,20 @@ void usage()
 	printf("                                               ADDRESSES: for multiple hashes/addresses\n");
 	printf("                                               XPOINT   : for single xpoint\n");
 	printf("                                               XPOINTS  : for multiple xpoints\n");
-	printf("--coin BTC/ETH                           : Specify Coin name to search\n");
+	printf("-c, --coin BTC/ETH                           : Specify Coin name to search\n");
 	printf("                                               BTC: available mode :-\n");
 	printf("                                                   ADDRESS, ADDRESSES, XPOINT, XPOINTS\n");
 	printf("                                               ETH: available mode :-\n");
 	printf("                                                   ADDRESS, ADDRESSES\n");
 	printf("-l, --list                               : List cuda enabled devices\n");
-	printf("--range KEYSPACE                         : Specify the range:\n");
+	printf("-r, --range KEYSPACE                         : Specify the range:\n");
 	printf("                                               START:END\n");
 	printf("                                               START:+COUNT\n");
 	printf("                                               START\n");
 	printf("                                               :END\n");
 	printf("                                               :+COUNT\n");
 	printf("                                               Where START, END, COUNT are in hex format\n");
-	printf("-r, --rkey Rkey                          : Random key interval in MegaKeys, default is disabled\n");
+	printf("-rk, --rkey Rkey                          : Random key interval in MegaKeys, default is disabled\n");
 	printf("-v, --version                            : Show version\n");
 }
 
@@ -234,7 +234,7 @@ int main(int argc, char** argv)
 	// cmd args parsing
 	CmdParse parser;
 	parser.add("-h", "--help", false);
-	parser.add("-c", "--check", false);
+	parser.add("", "--check", false);
 	parser.add("-l", "--list", false);
 	parser.add("-u", "--uncomp", false);
 	parser.add("-b", "--both", false);
@@ -245,9 +245,9 @@ int main(int argc, char** argv)
 	parser.add("-i", "--in", true);
 	parser.add("-o", "--out", true);
 	parser.add("-m", "--mode", true);
-	parser.add("", "--coin", true);
+	parser.add("-c", "--coin", true);
 	parser.add("-r", "--range", true);
-	parser.add("", "--rkey", true);
+	parser.add("-rk", "--rkey", true);
 	parser.add("-v", "--version", false);
 
 	if (argc == 1) {
@@ -273,7 +273,7 @@ int main(int argc, char** argv)
 				usage();
 				return 0;
 			}
-			else if (optArg.equals("-c", "--check")) {
+			else if (optArg.equals("", "--check")) {
 				printf("PrivHunt v" RELEASE "\n\n");
 				printf("\nChecking... Secp256K1\n\n");
 				Secp256K1* secp = new Secp256K1();
@@ -328,14 +328,14 @@ int main(int argc, char** argv)
 			else if (optArg.equals("-m", "--mode")) {
 				searchMode = parseSearchMode(optArg.arg);
 			}
-			else if (optArg.equals("", "--coin")) {
+			else if (optArg.equals("-c", "--coin")) {
 				coinType = parseCoinType(optArg.arg);
 			}
 			else if (optArg.equals("-r", "--range")) {
 				std::string range = optArg.arg;
 				parseRange(range, rangeStart, rangeEnd);
 			}
-			else if (optArg.equals("", "--rkey")) {
+			else if (optArg.equals("-rk", "--rkey")) {
 				rKey = std::stoull(optArg.arg);
 			}
 			else if (optArg.equals("-v", "--version")) {
