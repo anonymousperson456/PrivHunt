@@ -217,7 +217,7 @@ Int rangeDiffLocal;
 rangeDiffLocal.Set(&this->rangeEnd);
 rangeDiffLocal.Sub(&this->rangeStart);
 if (rangeDiffLocal.IsZero()) {
-    fprintf(f, "Position in Percent: 0.000000 %%\n");
+    fprintf(f, "Position in Percent: 0.000000 %%\n\n");
 } else {
     Int mult;
     mult.SetInt32(100000000);
@@ -228,7 +228,7 @@ if (rangeDiffLocal.IsZero()) {
         percStr.insert(percStr.length() - 6, ".");
     else
         percStr = "0." + std::string(6 - percStr.length(), '0') + percStr;
-    fprintf(f, "Position in Percent: %s %%\n", percStr.c_str());
+    fprintf(f, "Position in Percent: %s %%\n\n", percStr.c_str());
 }
   if (needToClose)
     fclose(f);
