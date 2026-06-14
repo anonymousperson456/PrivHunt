@@ -832,9 +832,6 @@ break;
 if (ok) {
 for (int i = 0; i < nbThread; i++) {
 keys[i].Add((uint64_t)STEP_SIZE);
-p[i] = secp->AddDirect(p[i], _2Gn);
-}
-ok = g->SetKeys(p);
 }
 counters[thId] += (uint64_t)(STEP_SIZE)*nbThread; // Point
 }
