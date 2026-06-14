@@ -208,28 +208,6 @@ void KeyHunt::output(std::string addr, std::string pAddr, std::string pAddrHex, 
   std::transform(prv.begin(), prv.end(), prv.begin(), [](unsigned char c){ return std::tolower(c); });
   fprintf(f, "Private Key: %s\n", prv.c_str());
   
-Int keyInt;
-keyInt.SetBase16(prv.c_str());
-Int offset;
-offset.Set(&keyInt);
-offset.Sub(&this->rangeStart);
-Int rangeDiffLocal;
-rangeDiffLocal.Set(&this->rangeEnd);
-rangeDiffLocal.Sub(&this->rangeStart);
-if (rangeDiffLocal.IsZero()) {
-    fprintf(f, "Position in Percent: 0.000000 %%\n\n");
-} else {
-    Int mult;
-    mult.SetInt32(100000000);
-    offset.Mult(&mult);
-    offset.Div(&rangeDiffLocal);
-    std::string percStr = offset.GetBase10();
-    if (percStr.length() > 6)
-        percStr.insert(percStr.length() - 6, ".");
-    else
-        percStr = "0." + std::string(6 - percStr.length(), '0') + percStr;
-    fprintf(f, "Position in Percent: %s %%\n\n", percStr.c_str());
-}
   if (needToClose)
     fclose(f);
 #ifdef WIN64
@@ -1071,9 +1049,8 @@ rKeyCount++;
 lastCount = count;
 lastGPUCount = gpuCount;
 t0 = t1;
-double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
-if (should_exit || nbFoundKey >= targetCounter || stopPerc >= 100.0)
-endOfSearch = true;
+if (should_exit || nbFoundKey >= targetCounter)
+    endOfSearch = true;
 }
 printf("\n");
 free(params);
