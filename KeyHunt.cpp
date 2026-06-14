@@ -835,6 +835,7 @@ keys[i].Add((uint64_t)STEP_SIZE);
 p[i] = secp->AddDirect(p[i], _2Gn);
 }
 ok = g->SetKeys(p);
+}
 counters[thId] += (uint64_t)(STEP_SIZE)*nbThread; // Point
 }
 }
@@ -1049,7 +1050,9 @@ rKeyCount++;
 lastCount = count;
 lastGPUCount = gpuCount;
 t0 = t1;
-if (should_exit || nbFoundKey >= targetCounter)
+
+double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
+if (should_exit || nbFoundKey >= targetCounter || stopPerc >= 100.0)
     endOfSearch = true;
 }
 printf("\n");
