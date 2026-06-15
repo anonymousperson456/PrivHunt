@@ -77,7 +77,7 @@ $(OBJDIR)/%.o : %.cpp
 all: KeyHunt
 
 KeyHunt: $(OBJET)
-    @echo
+	@echo
 	@echo Making PrivHunt...
 	$(CXX) $(OBJET) $(LFLAGS) -o privhunt
 
