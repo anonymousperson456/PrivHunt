@@ -1051,7 +1051,7 @@ lastGPUCount = gpuCount;
 t0 = t1;
 
 double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
-if (should_exit || nbFoundKey >= targetCounter || stopPerc >= 100.0)
+if (should_exit || nbFoundKey >= targetCounter || stopPerc = 100.0)
     endOfSearch = true;
 }
 printf("\n");
