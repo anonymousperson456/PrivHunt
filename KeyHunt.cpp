@@ -1019,6 +1019,7 @@ if (isAlive(params)) {
   double displayRate;
   const char* unit;
   double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
+  if (stopPerc >= 100.0) stopPerc = 100.0;
   if (avgGpuKeyRate >= 1e12) {
     displayRate = avgGpuKeyRate / 1e12;
     unit = "TK/s";
@@ -1051,7 +1052,8 @@ lastGPUCount = gpuCount;
 t0 = t1;
 
 double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
-if (should_exit || nbFoundKey >= targetCounter || stopPerc = 100.0)
+if (stopPerc >= 100.0) stopPerc = 100.0;
+if (should_exit || nbFoundKey >= targetCounter || stopPerc >= 100.0)
     endOfSearch = true;
 }
 printf("\n");
