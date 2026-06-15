@@ -1018,6 +1018,7 @@ if (isAlive(params)) {
   memset(timeStr, '\0', 256);
   double displayRate;
   const char* unit;
+  double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
   if (avgGpuKeyRate >= 1e12) {
     displayRate = avgGpuKeyRate / 1e12;
     unit = "TK/s";
