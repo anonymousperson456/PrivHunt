@@ -1028,11 +1028,12 @@ if (isAlive(params)) {
     displayRate = avgGpuKeyRate / 1e6;
     unit = "MK/s";
   }
-  printf("\r%-80s\r[%s] [GPU: %.2f %s] [Found: %d]",
+  printf("\r%-80s\r[%s] [GPU: %.2f %s] [Checked: %lf %%] [Found: %d]",
     "",
     toTimeStr(t1, timeStr),
     displayRate,
     unit,
+    stopPerc,
     nbFoundKey);
   fflush(stdout);
 }
