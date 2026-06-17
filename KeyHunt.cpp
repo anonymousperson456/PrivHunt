@@ -1018,8 +1018,6 @@ if (isAlive(params)) {
   memset(timeStr, '\0', 256);
   double displayRate;
   const char* unit;
-  double stopPerc = CalcPercantage(ICount, rangeStart, rangeDiff2);
-  if (stopPerc >= 100.0) stopPerc = 100.0;
   if (avgGpuKeyRate >= 1e12) {
     displayRate = avgGpuKeyRate / 1e12;
     unit = "TK/s";
@@ -1030,12 +1028,11 @@ if (isAlive(params)) {
     displayRate = avgGpuKeyRate / 1e6;
     unit = "MK/s";
   }
-  printf("\r%-80s\r[%s] [GPU: %.2f %s] [Checked: %lf%%] [Found: %d]",
+  printf("\r%-80s\r[%s] [GPU: %.2f %s] [Found: %d]",
     "",
     toTimeStr(t1, timeStr),
     displayRate,
     unit,
-    stopPerc,
     nbFoundKey);
   fflush(stdout);
 }
