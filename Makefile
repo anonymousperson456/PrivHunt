@@ -40,7 +40,7 @@ CXXCUDA    = /usr/bin/g++
 NVCC       = $(CUDA)/bin/nvcc
 # nvcc requires joint notation w/o dot, i.e. "5.2" -> "52"
 CCAP       := $(shell nvidia-smi --query-gpu=compute_cap --format=csv,noheader | head -1)
-ccap       = $(shell echo $(CCAP) | tr -d '.')
+ccap       = 120
 
 ifdef gpu
 ifdef debug
